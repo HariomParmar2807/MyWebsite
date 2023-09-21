@@ -11,7 +11,7 @@ jobs:
       - name: Upload from public_html via FTP
         uses: airvzxf/ftp-deployment-action@latest
         with:
-          server: /public_html/ftp.offcampuscareer.com
+          server: ftp.offcampuscareer.com
           user: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
           server-dir: /public_html/test.geekspool.com/
