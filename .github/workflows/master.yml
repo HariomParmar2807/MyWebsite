@@ -14,5 +14,4 @@ jobs:
           server: /public_html/ftp.offcampuscareer.com
           user: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          local_dir: "./public_html"
-          delete: "false"
+          server-dir: /public_html/test.geekspool.com/
