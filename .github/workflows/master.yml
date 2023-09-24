@@ -8,10 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Here is the deployment action
-      - name: Upload from public_html via FTP
-        uses: airvzxf/ftp-deployment-action@latest
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.offcampuscareer.com
-          user: ${{ secrets.ftp_username }}
-          password: ${{ secrets.ftp_password }}
-          server-dir: /public_html/test.geekspool.com/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+        
