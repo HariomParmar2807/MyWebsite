@@ -1,0 +1,43 @@
+name: HTML Deployment CI/CD
+
+on:
+  push:
+    branches: ["master","develop"]
+  pull_request:
+    branches: ["master","develop"]
+  workflow_dispatch: #run the manual workflow
+
+jobs:
+  deploy-test:
+    name: Deploy in TEST
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./web-release/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            
+  deploy-prod:
+    name: Deploy to Production Environment
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./web-release/
+          exclude: |
+            **/.git*
+            **/.git*/**
