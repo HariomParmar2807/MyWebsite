@@ -29,6 +29,7 @@ jobs:
     name: Deploy to Production Environment
     runs-on: ubuntu-latest
     environment: prod
+    needs: deploy-test
 
     steps:
       - uses: actions/checkout@v2
